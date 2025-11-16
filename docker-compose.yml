@@ -1,0 +1,25 @@
+services:
+  deepseek-ocr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./deepseek_ocr_custom.py:/DeepSeek-OCR/DeepSeek-OCR-master/DeepSeek-OCR-vllm/deepseek_ocr_custom.py
+      - ./testdata:/testdata
+      - hugggingface:/huggingface
+    working_dir: /DeepSeek-OCR/DeepSeek-OCR-master/DeepSeek-OCR-vllm
+    environment:
+      - HF_HOME=/huggingface
+    entrypoint:
+      - bash
+      - -c
+      - python3 deepseek_ocr_custom.py
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+volumes:
+  hugggingface:
