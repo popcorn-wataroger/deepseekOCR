@@ -32,7 +32,7 @@ except ImportError:
     print("警告: pdf2imageが見つかりません。PDFファイルは処理できません。")
 MODEL_PATH = 'deepseek-ai/DeepSeek-OCR' # change to your model path
 # INPUT_PATH = '/testdata/inputs/test.tiff'
-INPUT_PATH = '/testdata/inputs/IMG_5540.JPG'
+INPUT_PATH = '/testdata/inputs/IMG_8296.jpg'
 OUTPUT_PATH = '/testdata/outputs/'
 CROP_MODE = True
 PROMPT = '<image>\n<|grounding|>Convert the document to markdown.'
