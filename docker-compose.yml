@@ -1,0 +1,31 @@
+services:
+  deepseek-ocr-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # APIモジュールをマウント
+      - ./api_router.py:/DeepSeek-OCR/api_router.py
+      - ./image_loader.py:/DeepSeek-OCR/image_loader.py
+      - ./deepseek_ocr_engine.py:/DeepSeek-OCR/deepseek_ocr_engine.py
+      # テストデータをマウント
+      - ./testdata:/testdata
+      # Hugging Faceキャッシュ用ボリューム
+      - huggingface:/huggingface
+    working_dir: /DeepSeek-OCR
+    ports:
+      - "8000:8000"
+    environment:
+      - HF_HOME=/huggingface
+      - PYTHONUNBUFFERED=1
+    command: bash -c "python3 api_router.py"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  huggingface:

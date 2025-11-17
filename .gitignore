@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Docker
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test data
+testdata/outputs/
+testdata/inputs/*.jpg
+testdata/inputs/*.png
+testdata/inputs/*.pdf
+testdata/inputs/*.tiff
+
+# Keep directory structure
+!testdata/inputs/.gitkeep
+!testdata/outputs/.gitkeep
+
+# Hugging Face cache
+huggingface/
